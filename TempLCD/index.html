@@ -37,6 +37,7 @@
 		var celsius = 0;
 		var degree = 0;
 		var r = 0, g = 0, b = 0;
+		var SCelsius = "";
 
 		// 初始化腳位
 		setup();
@@ -68,12 +69,13 @@
 
 				// }
 
+				SCelsius = celsius.toString();
 				//清空文字
-				cpf.request('["grove_rgblcd_clear"]');
+				//cpf.request('["grove_rgblcd_clear"]');
 				//設定LCD背光顏色
-				cpf.request('["grove_rgblcd_set_rgb", 255, 0, 0]');
+				cpf.request('["grove_rgblcd_set_rgb", 0, 255, 0]');
 				//設定文字
-				cpf.request('["grove_rgblcd_print", 0, 1,' + celsius.toString() + ']');
+				cpf.request('["grove_rgblcd_print", 0, 1,"' + SCelsius + '"]');
 				//不顯示文字（不會清空文字）
 				// cpf.request('["grove_rgblcd_display", 0]');
 				//顯示文字
