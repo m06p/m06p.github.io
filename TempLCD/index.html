@@ -68,12 +68,12 @@
 
 				// }
 
+				//清空文字
+				cpf.request('["grove_rgblcd_clear"]');
 				//設定LCD背光顏色
 				cpf.request('["grove_rgblcd_set_rgb", 255, 0, 0]');
 				//設定文字
-				cpf.request('["grove_rgblcd_print", 0, 1,' + toString(celsius) + ']');
-				//清空文字
-				// cpf.request('["grove_rgblcd_clear"]');
+				cpf.request('["grove_rgblcd_print", 0, 1,' + celsius.toString() + ']');
 				//不顯示文字（不會清空文字）
 				// cpf.request('["grove_rgblcd_display", 0]');
 				//顯示文字
