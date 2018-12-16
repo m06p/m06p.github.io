@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<head>
+<title>TempLCD</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="main.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+<body>
+<font id="title">指針溫度計</font><p><br>
+
+<div id="content">
+	<div class="col-xs-12">
+		<div class="images">
+			<img id="thermometer" src="img/thermometer.png">
+			<img id="pointer" src="img/pointer.png">
+		</div>
+
+		<br>
+
+		<h3>Degree：<span id="degree">none</span></h3>
+		<h3>thermometer：<span id="temp">none</span>C</h3>
+
+	</div>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script>
+	var celsius = 0;
+	var degree = 0;
+	setup();
+
+	function loop() {
+		if(cpf) {
+			tempdata = cpf.get("temperature sensor");
+			celsius = toCelsius(tempdata);
+			document.getElementById("temp").innerHTML = celsius;
+
+			if(celsius >= -30 && celsius <= 50) {
+				degree = Math.floor((180 / 80) * celsius + 67.5);
+				document.getElementById("pointer").style.transform = "rotate(" + degree + "deg)";
+				document.getElementById("degree").innerHTML = degree;
+				cpf.request('["analogWrite", 4,' + Math.abs(degree - 180) + ']');
+			}
+		}
+		setTimeout(loop, 1000);
+	}
+
+	loop();
+
+	function toCelsius(values) {
+		var resistance = parseFloate((1023 - values) * 10000 / values);
+		var temperature = 1 / (Math.log(resistance / 10000) / 3975 + 1 / 298.15) - 273.15;
+		return temperature.toFixed(2);
+	}
+
+	function setup() {
+		if(cpf) {
+			cpf.setPinMode('["resetPin"] ,["setPinMode", "analog", 1,"INPUT"], ["setPinMode", "digital", 4, "SERVO"]');
+		}
+	}
+
+</script>
+</body>
+</html>
