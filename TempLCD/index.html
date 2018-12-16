@@ -52,7 +52,7 @@
 	loop();
 
 	function toCelsius(values) {
-		var resistance = parseFloate((1023 - values) * 10000 / values);
+		var resistance = parseFloat((1023 - values) * 10000 / values);
 		var temperature = 1 / (Math.log(resistance / 10000) / 3975 + 1 / 298.15) - 273.15;
 		return temperature.toFixed(2);
 	}
