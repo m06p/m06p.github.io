@@ -14,7 +14,7 @@
 </head>
 
 <body>
-	<h1>指針溫度計</h1>
+	<h1>指針溫度計2</h1>
 
 	<div id="container">
 		<div class="col-xs-12">
@@ -75,7 +75,8 @@
 				// -----
 
 				// 賦值
-				SCelsius = celsius.toString() + "度 ";
+				SCelsius = celsius.toString();
+				// SCelsius = celsius.toString() + "度 ";
 
 				if (celsius >= 33 && celsius <= 50) {
 					T = "太熱了";
@@ -91,7 +92,7 @@
 					g = 185;
 					b = 100;
 				} else if (celsius >= 21 && celsius <= 24) {
-					T = "舒服~";
+					T = "舒服";
 					r = 170;
 					g = 200;
 					b = 145;
@@ -138,9 +139,10 @@
 		// -----
 
 		// 轉換數值為攝氏
-		function toCelsius(values) {
-			var resistance = parseFloat((1023 - values) * 10000 / values);
+		function toCelsius(value) {
+			var resistance = parseFloat((1023 - value) * 10000 / value);
 			var temperature = 1 / (Math.log(resistance / 10000) / 3975 + 1 / 298.15) - 273.15;
+
 			return temperature.toFixed(2);
 		}
 		// -----
