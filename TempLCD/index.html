@@ -76,35 +76,35 @@
 
 				// 賦值
 				if (celsius >= 33 && celsius <= 50) {
-					T = "nearly melting!";
+					T = " nearly melting!";
 					r = 255;
 					g = 65;
 				} else if (celsius >= 28 && celsius <= 32) {
-					T = "burning hot!";
+					T = " burning hot!";
 					r = 255;
 					g = 135;
 				} else if (celsius >= 25 && celsius <= 27) {
-					T = "hot";
+					T = " hot";
 					r = 255;
 					g = 185;
 					b = 100;
 				} else if (celsius >= 21 && celsius <= 24) {
-					T = "crisp";
+					T = " crisp";
 					r = 170;
 					g = 200;
 					b = 145;
 				} else if (celsius >= 15 && celsius <= 20) {
-					T = "nippy";
+					T = " nippy";
 					r = 180;
 					g = 190;
 					b = 180;
 				} else if (celsius >= 5 && celsius <= 14) {
-					T = "frigid!";
+					T = " frigid!";
 					r = 90;
 					g = 105;
 					b = 120;
 				} else if (celsius >= -30 && celsius <= 4) {
-					T = "ice cold!";
+					T = " ice cold!";
 					r = 50;
 					g = 70;
 					b = 85;
@@ -114,6 +114,8 @@
 
 				// -----
 
+				//清空文字
+				cpf.request('["grove_rgblcd_clear"]');
 				// 設定LCD背光顏色
 				cpf.request('["grove_rgblcd_set_rgb",' + r + ',' + g + ',' + b + ']');
 				// 設定文字
