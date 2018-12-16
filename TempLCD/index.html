@@ -34,9 +34,13 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 	 crossorigin="anonymous"></script>
 	<script>
+		// int溫度
 		var celsius = 0;
+		// 角度
 		var degree = 0;
+		// LCD三原色
 		var r = 0, g = 0, b = 0;
+		// string溫度
 		var SCelsius = "";
 
 		// 初始化腳位
@@ -46,42 +50,57 @@
 		// 持續監控
 		function loop() {
 			if (cpf) {
+				// 取得感測器數值
 				tempdata = cpf.get("temperature sensor");
+				// 取得攝氏溫度
 				celsius = toCelsius(tempdata);
+				// 顯示溫度數值
 				document.getElementById("temp").innerHTML = celsius;
 
+				// 如果溫度介於 -30 ~ 50 之間
 				if (celsius >= -30 && celsius <= 50) {
+					// 角度運算
 					degree = Math.floor((180 / 80) * celsius + 67.5);
+					// 顯示角度
 					document.getElementById("pointer").style.transform = "rotate(" + degree + "deg)";
 					document.getElementById("degree").innerHTML = degree;
+					// -----
+
+					// 驅動伺服馬達
+					// 0左 180右
 					cpf.request('["analogWrite", 4,' + Math.abs(degree - 180) + ']');
 				}
+				// -----
 
-				// if (r == 0) {
-				// 	r++;
-				// } else if (r == 255) {
-				// 	g++;
-				// 	r--;
-				// } else if (g == 255) {
-				// 	b++;
-				// 	g--
-				// } else if (b == 255) {
-
-				// }
-
+				// 賦值
 				SCelsius = celsius.toString();
+				if (celsius <= 40) {
+					r = 255;
+
+					g = celsius * 5;
+
+					if (celsius <= 25) {
+						b = (celsius - 10) * 5;
+					}
+				}
+				// -----
+
+				// 設定LCD背光顏色
+				cpf.request('["grove_rgblcd_set_rgb",' + r + ',' + g + ',' + b + ']');
+				// 設定文字
+				cpf.request('["grove_rgblcd_print", 0, 1,"' + SCelsius + '"]');
+
+
 				//清空文字
 				//cpf.request('["grove_rgblcd_clear"]');
-				//設定LCD背光顏色
-				cpf.request('["grove_rgblcd_set_rgb", 0, 255, 0]');
-				//設定文字
-				cpf.request('["grove_rgblcd_print", 0, 1,"' + SCelsius + '"]');
 				//不顯示文字（不會清空文字）
 				// cpf.request('["grove_rgblcd_display", 0]');
 				//顯示文字
 				// cpf.request('["grove_rgblcd_display", 1]');
 			}
-			setTimeout(loop, 1000);
+			setTimeout(loop, 100);
+			// setTimeout(loop, 1000);
+
 		}
 
 		loop();
