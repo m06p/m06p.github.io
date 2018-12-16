@@ -36,6 +36,7 @@
 	<script>
 		var celsius = 0;
 		var degree = 0;
+		var r = 0, g = 0, b = 0;
 
 		// 初始化腳位
 		setup();
@@ -55,10 +56,22 @@
 					cpf.request('["analogWrite", 4,' + Math.abs(degree - 180) + ']');
 				}
 
+				// if (r == 0) {
+				// 	r++;
+				// } else if (r == 255) {
+				// 	g++;
+				// 	r--;
+				// } else if (g == 255) {
+				// 	b++;
+				// 	g--
+				// } else if (b == 255) {
+
+				// }
+
 				//設定LCD背光顏色
 				cpf.request('["grove_rgblcd_set_rgb", 255, 0, 0]');
 				//設定文字
-				cpf.request('["grove_rgblcd_print", 0, 1, "Hello World"]');
+				cpf.request('["grove_rgblcd_print", 0, 1,' + celsius + ']');
 				//清空文字
 				// cpf.request('["grove_rgblcd_clear"]');
 				//不顯示文字（不會清空文字）
