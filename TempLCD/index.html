@@ -14,7 +14,7 @@
 </head>
 
 <body>
-	<h1>指針溫度計2</h1>
+	<h1>指針溫度計</h1>
 
 	<div id="container">
 		<div class="col-xs-12">
@@ -25,8 +25,8 @@
 
 			<br>
 
-			<h3>角度Degree：<span id="degree">none</span>度</h3>
-			<h3>溫度Thermometer：攝氏<span id="temp">none</span>度</h3>
+			<h3>角度Degree：<span id="degree">none</span>°</h3>
+			<h3>溫度Thermometer：攝氏<span id="temp">none</span>°C</h3>
 
 		</div>
 	</div>
@@ -75,44 +75,43 @@
 				// -----
 
 				// 賦值
-				SCelsius = celsius.toString();
-				// SCelsius = celsius.toString() + "度 ";
-
 				if (celsius >= 33 && celsius <= 50) {
-					T = "太熱了";
+					T = "nearly melting!";
 					r = 255;
 					g = 65;
 				} else if (celsius >= 28 && celsius <= 32) {
-					T = "好熱";
+					T = "burning hot!";
 					r = 255;
 					g = 135;
 				} else if (celsius >= 25 && celsius <= 27) {
-					T = "熱";
+					T = "hot";
 					r = 255;
 					g = 185;
 					b = 100;
 				} else if (celsius >= 21 && celsius <= 24) {
-					T = "舒服";
+					T = "crisp";
 					r = 170;
 					g = 200;
 					b = 145;
 				} else if (celsius >= 15 && celsius <= 20) {
-					T = "冷";
+					T = "nippy";
 					r = 180;
 					g = 190;
 					b = 180;
 				} else if (celsius >= 5 && celsius <= 14) {
-					T = "好冷";
+					T = "frigid";
 					r = 90;
 					g = 105;
 					b = 120;
 				} else if (celsius >= -30 && celsius <= 4) {
-					T = "冷死了";
+					T = "ice cold";
 					r = 50;
 					g = 70;
 					b = 85;
 				}
 
+				SCelsius = celsius.toString() + "°C" + T;
+				// SCelsius = celsius.toString() + "度 ";
 
 				// -----
 
@@ -120,7 +119,6 @@
 				cpf.request('["grove_rgblcd_set_rgb",' + r + ',' + g + ',' + b + ']');
 				// 設定文字
 				cpf.request('["grove_rgblcd_print", 0, 1,"' + SCelsius + '"]');
-				// cpf.request('["grove_rgblcd_print", 0, 1,"' + SCelsius + T + '"]');
 
 
 				//清空文字
