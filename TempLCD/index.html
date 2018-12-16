@@ -40,7 +40,7 @@
 		var degree = 0;
 		// LCD三原色
 		var r = 0, g = 0, b = 0;
-		// string溫度
+		// string體感溫度
 		var SCelsius = "";
 
 		// 初始化腳位
@@ -73,22 +73,48 @@
 				// -----
 
 				// 賦值
-				SCelsius = celsius.toString();
-				if (celsius <= 40) {
+				if (celsius >= 33 && celsius <= 50) {
+					SCelsius = "太熱了";
 					r = 255;
-
-					g = celsius * 5;
-
-					if (celsius <= 25) {
-						b = (celsius - 10) * 5;
-					}
+					g = 65;
+				} else if (celsius >= 28 && celsius <= 32) {
+					SCelsius = "好熱";
+					r = 255;
+					g = 135;
+				} else if (celsius >= 25 && celsius <= 27) {
+					SCelsius = "熱";
+					r = 255;
+					g = 185;
+					b = 100;
+				} else if (celsius >= 21 && celsius <= 24) {
+					SCelsius = "舒服~";
+					r = 170;
+					g = 200;
+					b = 145;
+				} else if (celsius >= 15 && celsius <= 20) {
+					SCelsius = "冷";
+					r = 180;
+					g = 190;
+					b = 180;
+				} else if (celsius >= 5 && celsius <= 14) {
+					SCelsius = "好冷";
+					r = 90;
+					g = 105;
+					b = 120;
+				} else if (celsius >= -30 && celsius <= 4) {
+					SCelsius = "冷死了";
+					r = 50;
+					g = 70;
+					b = 85;
 				}
+
+
 				// -----
 
 				// 設定LCD背光顏色
 				cpf.request('["grove_rgblcd_set_rgb",' + r + ',' + g + ',' + b + ']');
 				// 設定文字
-				cpf.request('["grove_rgblcd_print", 0, 1,"' + SCelsius + '"]');
+				cpf.request('["grove_rgblcd_print", 0, 1,"' + celsius.toString() + '度 ' + SCelsius + '"]');
 
 
 				//清空文字
