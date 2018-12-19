@@ -14,7 +14,7 @@
 </head>
 
 <body>
-	<h1>指針溫度計V5</h1>
+	<h1>指針溫度計V6</h1>
 
 	<div id="container">
 		<div class="col-xs-12">
@@ -145,7 +145,7 @@
 		// TONE
 		function Tone() {
 			//cpf.setPinMode('["resetPin"],["setPinMode"],["digital"],6,"TONE"');
-			cpf.request('["tone_play", 6,392, 392, 392, 329], ["sleep", 300"]');
+			cpf.request('["tone_play", 6,392,300],["tone_play", 6,392,300], ["tone_play", 6,392,300],["tone_play", 6,329,1000]');
 
 		}
 		// -----
