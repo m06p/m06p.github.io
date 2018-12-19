@@ -1,185 +1,100 @@
 <!DOCTYPE html>
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" href="main.css">
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-	 crossorigin="anonymous">
 
-	<title>Switch_V4</title>
+    <!-- <meta http-equiv="X-UA-Campatible" > -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Document</title>
+
 
 </head>
 
 <body>
-	<h1>Switch_V4</h1>
 
-	<div id="container">
-		<div class="col-xs-12">
-			<div class="images">
-				<img id="thermometer" src="img/thermometer.png">
-				<img id="pointer" src="img/pointer.png">
-			</div>
-
-			<br>
-
-			<h3>角度Degree：<span id="degree">none</span>°</h3>
-			<h3>溫度Thermometer：攝氏<span id="temp">none</span>°C</h3>
-
-		</div>
-	</div>
-
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-	 crossorigin="anonymous"></script>
-	<script>
-		// int溫度
-		var celsius = 0;
-		// 角度
-		var degree = 0;
-		// LCD三原色
-		var r = 0, g = 0, b = 0;
-		// string體感溫度
-		var T = "";
-		// syring溫度
-		var SCelsius = "";
-
-		// 初始化腳位
-		setup();
-		// -----
-
-		// 持續監控
-		function loop() {
-			if (cpf) {
-				// 取得感測器數值
-				tempdata = cpf.get("temperature sensor");
-				// 取得攝氏溫度
-				celsius = toCelsius(tempdata);
-				// 顯示溫度數值
-				document.getElementById("temp").innerHTML = celsius;
-
-				// 如果溫度介於 -30 ~ 50 之間
-				if (celsius >= -30 && celsius <= 50) {
-					// 角度運算
-					degree = Math.floor((180 / 80) * celsius + 67.5);
-					// 顯示角度
-					document.getElementById("pointer").style.transform = "rotate(" + degree + "deg)";
-					document.getElementById("degree").innerHTML = degree;
-					// -----
-
-					// 驅動伺服馬達
-					// 0左 180右
-					cpf.request('["analogWrite", 4,' + Math.abs(degree - 180) + ']');
-				}
-				// -----
-
-				// 賦值
-				if (celsius >= 33 && celsius <= 50) {
-					T = " nearly melting!";
-					r = 255;
-					g = 65;
-				} else if (celsius >= 28 && celsius <= 32) {
-					T = " burning hot!";
-					r = 255;
-					g = 135;
-				} else if (celsius >= 25 && celsius <= 27) {
-					T = " hot";
-					r = 255;
-					g = 185;
-					b = 100;
-				} else if (celsius >= 21 && celsius <= 24) {
-					T = " crisp";
-					r = 170;
-					g = 200;
-					b = 145;
-				} else if (celsius >= 15 && celsius <= 20) {
-					T = " nippy";
-					r = 180;
-					g = 190;
-					b = 180;
-				} else if (celsius >= 5 && celsius <= 14) {
-					T = " frigid!";
-					r = 90;
-					g = 105;
-					b = 120;
-				} else if (celsius >= -30 && celsius <= 4) {
-					T = " ice cold!";
-					r = 50;
-					g = 70;
-					b = 85;
-				}
-
-				SCelsius = celsius.toString();
-
-				// -----
-
-				//清空文字
-				cpf.request('["grove_rgblcd_clear"]');
-				// 設定LCD背光顏色
-				cpf.request('["grove_rgblcd_set_rgb",' + r + ',' + g + ',' + b + ']');
-				// 設定文字
-				// cpf.request('["grove_rgblcd_print", 0, 1,"nearly melting!"]');
-				cpf.request('["grove_rgblcd_print", 0, 0,"' + SCelsius + '"]');
-				cpf.request('["grove_rgblcd_print", 0, 1,"' + T + '"]');
-
-
-				//清空文字
-				//cpf.request('["grove_rgblcd_clear"]');
-				//不顯示文字（不會清空文字）
-				// cpf.request('["grove_rgblcd_display", 0]');
-				//顯示文字
-				// cpf.request('["grove_rgblcd_display", 1]');
-
-				//Tone();
-
-
-				Switch1219();
-			}
-			// setTimeout(loop, 100);
-			setTimeout(loop, 2000);
-
-		}
-
-		loop();
-		// -----
-
-
-		// TONE
-		function Tone() {
-			//cpf.setPinMode('["resetPin"],["setPinMode"],["digital"],6,"TONE"');
-			cpf.request('["tone_play", 6,392,100],["sleep,50"],["tone_play", 6,392,100],["sleep,50"], ["tone_play", 6,392,100],["sleep,50"],["tone_play", 6,329,1000],["sleep,500"]');
-			cpf.request('["tone_play", 6,349,300],["tone_play", 6,349,300], ["tone_play", 6,349,300],["tone_play", 6,293,1000]');
-
-
-		}
-		// -----
-		// 轉換數值為攝氏
-		function toCelsius(value) {
-			var resistance = parseFloat((1023 - value) * 10000 / value);
-			var temperature = 1 / (Math.log(resistance / 10000) / 3975 + 1 / 298.15) - 273.15;
-
-			return temperature.toFixed(2);
-		}
-		// -----
-
-		//SWITCH1219
-		function Switch1219(){
-			var switchgoog = cpf.get("d8");
-			cpf.request('["grove_rgblcd_print", 0, 0, "CLEAR" + ' + switchgoog +' +]');
-		}
-
-
-
-		// 初始化
-		function setup() {
-			if (cpf) {
-				cpf.setPinMode('["resetPin"] ,["setPinMode", "analog", 1,"INPUT"], ["setPinMode", "digital", 4, "SERVO"],["grove_rgblcd_begin", 16, 2],["setPinMode","digital",6,"TONE"],["setPinMode", "digital",8 , "INPUT"]');
-			}
-		}
-		// -----
-
-	</script>
+    <select id="city">
+        <option>請選擇</option>
+    </select>
+    <select id="area">
+        <option>請選擇</option>
+    </select>
 </body>
+
+<script>
+    var county = [];
+
+    var mycity;
+
+    window.onload = function () {
+
+        setup();
+
+
+
+        $.get('http://opendata2.epa.gov.tw/UV/UV.json', function (data) {
+            console.log(data);
+            data.forEach(function (e, i) {
+                county[i] = e.county;
+            });
+
+            console.log(county);
+            result = county.filter(function (value, index, arr) {
+                return arr.indexOf(value) === index;
+            });
+            console.log(result);
+
+            result.forEach(function (e) {
+                $('#city').append('<option value"' + e + '">' + e + '</option>')
+            })
+
+            $('#city').change(function () {
+                mycity = $('#city').val();
+                $('#area').html('');
+                data.forEach(function (e, i) {
+                    if (e.county == mycity) {
+                        $('#area').append('<option value"' + e.SiteName + '">' + e.SiteName + '</option>');
+                    }
+                });
+                myarea = $area.val();
+                $content.html('');
+                data.forEach(function (e, i) {
+                    if (e.SiteName == myarea) {
+                        UVI = e['UVI'];
+                        if (UVI <= 2) {
+                            category = "微量級";
+                            color = "0,232,0";
+                            Tone();
+                        }
+                        else {
+                            category = "低量級";
+                            color = "255,255,0";
+                            Tone1();
+                        }
+                    }
+                })
+                function setup() {
+                    if (cpf) {
+                        cpf.setPinMode('["resetPin"] ,["setPinMode", "analog", 1,"INPUT"], ["setPinMode", "digital", 4, "SERVO"],["grove_rgblcd_begin", 16, 2],["setPinMode","digital",6,"TONE"],["setPinMode", "digital",8 , "INPUT"]');
+                    }
+                }
+                function Tone() {
+                    cpf.request('["tone_play", 6,349,300]');
+                    //cpf.request('["tone_play", 6,349,300],["tone_play", 6,349,300], ["tone_play", 6,349,300]');
+                }
+
+                function Tone1() {
+                    //cpf.request('["tone_play", 6,349,300]');
+                    cpf.request('["tone_play", 6,349,300],["tone_play", 6,349,300], ["tone_play", 6,349,300]');
+                }
+
+            })
+        });
+
+    }
+
+</script>
+
 
 </html>
