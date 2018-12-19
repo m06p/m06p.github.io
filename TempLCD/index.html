@@ -132,6 +132,9 @@
 				// cpf.request('["grove_rgblcd_display", 1]');
 
 				Tone();
+
+
+				Switch1219();
 			}
 			// setTimeout(loop, 100);
 			setTimeout(loop, 2000);
@@ -160,10 +163,18 @@
 		}
 		// -----
 
+		//SWITCH1219
+		function Switch1219(){
+			var switchgoog = cpf.get("d8");
+			cpf.request('["grove_rgblcd_print", 0, 0, "CLEAR" + ' + switchgoog +' +]');
+		}
+
+
+
 		// 初始化
 		function setup() {
 			if (cpf) {
-				cpf.setPinMode('["resetPin"] ,["setPinMode", "analog", 1,"INPUT"], ["setPinMode", "digital", 4, "SERVO"],["grove_rgblcd_begin", 16, 2],["setPinMode","digital",6,"TONE"]');
+				cpf.setPinMode('["resetPin"] ,["setPinMode", "analog", 1,"INPUT"], ["setPinMode", "digital", 4, "SERVO"],["grove_rgblcd_begin", 16, 2],["setPinMode","digital",6,"TONE"],["setPinMode", "digital",8 , "INPUT"]');
 			}
 		}
 		// -----
