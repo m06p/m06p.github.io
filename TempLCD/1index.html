@@ -149,7 +149,8 @@
 		function Tone() {
 			//cpf.setPinMode('["resetPin"],["setPinMode"],["digital"],6,"TONE"');
 			cpf.request('["tone_play", 6,392,100],["sleep,50"],["tone_play", 6,392,100],["sleep,50"], ["tone_play", 6,392,100],["sleep,50"],["tone_play", 6,329,1000],["sleep,500"]');
-			cpf.request('["tone_play", 6,349,300],["tone_play", 6,349,300], ["tone_play", 6,349,300],["tone_play", 6,293,1000]');
+			cpf.request('["tone_play", 6,349,300]');
+			cpf.request('["tone_play", 6,349,300],["tone_play", 6,349,300], ["tone_play", 6,349,300]');
 
 
 		}

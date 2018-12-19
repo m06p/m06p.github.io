@@ -36,7 +36,7 @@
         $.get('http://opendata2.epa.gov.tw/UV/UV.json', function (data) {
             console.log(data);
             data.forEach(function (e, i) {
-                county[i] = e.county;
+                county[i] = e.County;
             });
 
             console.log(county);
@@ -53,7 +53,7 @@
                 mycity = $('#city').val();
                 $('#area').html('');
                 data.forEach(function (e, i) {
-                    if (e.county == mycity) {
+                    if (e.County == mycity) {
                         $('#area').append('<option value"' + e.SiteName + '">' + e.SiteName + '</option>');
                     }
                 });
