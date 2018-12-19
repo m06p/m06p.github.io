@@ -139,6 +139,14 @@
 		loop();
 		// -----
 
+
+		// TONE
+		function Tone() {
+			cpf.setPinMode('["resetPin"],["setPinMode"],["digital"],6,"TONE"');
+			cpf.request('["tone_play", 6,392, 392, 392, 329], ["seleep", 300"]');
+
+		}
+		// -----
 		// 轉換數值為攝氏
 		function toCelsius(value) {
 			var resistance = parseFloat((1023 - value) * 10000 / value);
