@@ -134,7 +134,7 @@
 				Tone();
 			}
 			// setTimeout(loop, 100);
-			setTimeout(loop, 1000);
+			setTimeout(loop, 2000);
 
 		}
 
@@ -144,7 +144,7 @@
 
 		// TONE
 		function Tone() {
-			cpf.setPinMode('["resetPin"],["setPinMode"],["digital"],6,"TONE"');
+			//cpf.setPinMode('["resetPin"],["setPinMode"],["digital"],6,"TONE"');
 			cpf.request('["tone_play", 6,392, 392, 392, 329], ["seleep", 300"]');
 
 		}
@@ -161,7 +161,7 @@
 		// 初始化
 		function setup() {
 			if (cpf) {
-				cpf.setPinMode('["resetPin"] ,["setPinMode", "analog", 1,"INPUT"], ["setPinMode", "digital", 4, "SERVO"],["grove_rgblcd_begin", 16, 2]');
+				cpf.setPinMode('["resetPin"] ,["setPinMode", "analog", 1,"INPUT"], ["setPinMode", "digital", 4, "SERVO"],["grove_rgblcd_begin", 16, 2],["resetPin"],["setPinMode"],["digital"],6,"TONE"');
 			}
 		}
 		// -----
