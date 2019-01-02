@@ -14,7 +14,7 @@
 </head>
 
 <body>
-	<h1>20190102</h1>
+	<h1>Switch_V4</h1>
 
 	<div id="container">
 		<div class="col-xs-12">
@@ -134,7 +134,7 @@
 				//Tone();
 
 
-				//Switch1219();
+				Switch1219();
 			}
 			// setTimeout(loop, 100);
 			setTimeout(loop, 2000);
@@ -144,7 +144,7 @@
 		loop();
 		// -----
 
-/*
+
 		// TONE
 		function Tone() {
 			//cpf.setPinMode('["resetPin"],["setPinMode"],["digital"],6,"TONE"');
@@ -154,7 +154,6 @@
 
 
 		}
-*/
 		// -----
 		// 轉換數值為攝氏
 		function toCelsius(value) {
@@ -165,38 +164,18 @@
 		}
 		// -----
 
-/*
-        //上課寫的程式
-        function SoundSensorGet_A0(){
-        var SoundSensorGet_A0 = cpf.get("A0");
-        ui.set("A0",SoundSensorGet_A0);
-        return SoundSensorGet_A0();
-        }
-*/
-
-
-
-/*
 		//SWITCH1219
 		function Switch1219(){
 			var switchgoog = cpf.get("d8");
 			cpf.request('["grove_rgblcd_print", 0, 0, "CLEAR" + ' + switchgoog +' +]');
 		}
-*/
+
 
 
 		// 初始化
-		/*unction setup() {
+		function setup() {
 			if (cpf) {
 				cpf.setPinMode('["resetPin"] ,["setPinMode", "analog", 1,"INPUT"], ["setPinMode", "digital", 4, "SERVO"],["grove_rgblcd_begin", 16, 2],["setPinMode","digital",6,"TONE"],["setPinMode", "digital",8 , "INPUT"]');
-			}
-		}*/
-
-
-            //A1不知 //A4馬達 //A0聲音感測器
-        	function setup() {
-			if (cpf) {
-				cpf.setPinMode('["resetPin"] ,["setPinMode", "analog", 1,"INPUT"], ["setPinMode", "digital", 4, "SERVO"],"],["setPinMode","analog",0,"INPUT"]');
 			}
 		}
 		// -----
