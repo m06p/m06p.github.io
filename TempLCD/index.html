@@ -14,7 +14,7 @@
 </head>
 
 <body>
-	<h1>20190104_V3_SOUND</h1>
+	<h1>20190104_V4_SOUND</h1>
 
 	<div id="container">
 		<div class="col-xs-12">
@@ -60,7 +60,7 @@
 				document.getElementById("SOUND").innerHTML = sound;
 
 				// 如果溫度介於 -30 ~ 50 之間
-				if (celsius >= -30 && celsius <= 50) {
+				/*if (celsius >= -30 && celsius <= 50) {
 					// 角度運算
 					degree = Math.floor((180 / 80) * celsius + 67.5);
 					// 顯示角度
@@ -71,7 +71,7 @@
 					// 驅動伺服馬達
 					// 0左 180右
 					cpf.request('["analogWrite", 4,' + Math.abs(degree - 180) + ']');
-				}
+				}*/
 				// -----
 
 				// 賦值
