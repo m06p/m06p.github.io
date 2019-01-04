@@ -14,7 +14,7 @@
 </head>
 
 <body>
-	<h1>20190104_V2</h1>
+	<h1>20190104_V3_SOUND</h1>
 
 	<div id="container">
 		<div class="col-xs-12">
@@ -26,7 +26,7 @@
 			<br>
 
 			<h3>角度Degree：<span id="degree">none</span>°</h3>
-			<h3>溫度Thermometer：攝氏<span id="temp">none</span>°C</h3>
+			<h3>溫度Thermometer：攝氏<span id="SOUND">none</span>°C</h3>
 
 		</div>
 	</div>
@@ -53,11 +53,11 @@
 		function loop() {
 			if (cpf) {
 				// 取得感測器數值
-				tempdata = cpf.get("temperature sensor");
-				// 取得攝氏溫度
-				celsius = toCelsius(tempdata);
+				sounddata = cpf.get("A1");
+				// 取得分貝
+				sound = toCelsius(sounddata);
 				// 顯示溫度數值
-				document.getElementById("temp").innerHTML = celsius;
+				document.getElementById("SOUND").innerHTML = sound;
 
 				// 如果溫度介於 -30 ~ 50 之間
 				if (celsius >= -30 && celsius <= 50) {
