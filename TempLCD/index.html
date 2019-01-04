@@ -14,7 +14,7 @@
 </head>
 
 <body>
-	<h1>20190104_V4_SOUND</h1>
+	<h1>20190104_V5_SOUND</h1>
 
 	<div id="container">
 		<div class="col-xs-12">
@@ -53,7 +53,7 @@
 		function loop() {
 			if (cpf) {
 				// 取得感測器數值
-				sounddata = cpf.get("A1");
+				sounddata = cpf.get("sound senser");
 				// 取得分貝
 				sound = toCelsius(sounddata);
 				// 顯示溫度數值
