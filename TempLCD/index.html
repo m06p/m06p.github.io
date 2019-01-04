@@ -14,7 +14,7 @@
 </head>
 
 <body>
-	<h1>Switch_V4</h1>
+	<h1>20190104_V1</h1>
 
 	<div id="container">
 		<div class="col-xs-12">
@@ -134,7 +134,7 @@
 				//Tone();
 
 
-				Switch1219();
+				//Switch1219();
 			}
 			// setTimeout(loop, 100);
 			setTimeout(loop, 2000);
@@ -144,16 +144,16 @@
 		loop();
 		// -----
 
-
-		// TONE
+		/*
+		// TONE 聲音
 		function Tone() {
 			//cpf.setPinMode('["resetPin"],["setPinMode"],["digital"],6,"TONE"');
 			cpf.request('["tone_play", 6,392,100],["sleep,50"],["tone_play", 6,392,100],["sleep,50"], ["tone_play", 6,392,100],["sleep,50"],["tone_play", 6,329,1000],["sleep,500"]');
 			cpf.request('["tone_play", 6,349,300]');
 			cpf.request('["tone_play", 6,349,300],["tone_play", 6,349,300], ["tone_play", 6,349,300]');
-
-
 		}
+		*/
+
 		// -----
 		// 轉換數值為攝氏
 		function toCelsius(value) {
@@ -164,13 +164,13 @@
 		}
 		// -----
 
+		/*
 		//SWITCH1219
 		function Switch1219(){
 			var switchgoog = cpf.get("d8");
 			cpf.request('["grove_rgblcd_print", 0, 0, "CLEAR" + ' + switchgoog +' +]');
 		}
-
-
+		*/
 
 		// 初始化
 		function setup() {
