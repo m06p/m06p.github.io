@@ -9,12 +9,12 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	 crossorigin="anonymous">
 
-	<title>20190109v2_sound</title>
+	<title>20190109v3_sound</title>
 
 </head>
 
 <body>
-	<h1>20190109_v2_sound</h1>
+	<h1>20190109_v3_sound</h1>
 
 	<div id="container">
 		<div class="col-xs-12">
@@ -61,7 +61,7 @@
 				// 如果溫度介於 -30 ~ 50 之間
 
 
-
+/*
 				if (celsius >= -30 && celsius <= 50) {
 				degree = Math.floor((180 / 80) * celsius + 67.5);
 				document.getElementById("pointer").style.transform = "rotate(" + degree + "deg)";
@@ -69,7 +69,7 @@
 				cpf.request('["analogWrite", 4,' + Math.abs(degree - 180) + ']');
 				}
 
-
+*/
 
 /*
 				if (celsius >= -30 && celsius <= 50) {
@@ -165,12 +165,22 @@
 
 		// -----
 		// 初始化
+		/*
 		function setup() {
 			if (cpf) {
 				cpf.setPinMode('["resetPin"] ,["setPinMode", "analog", 1,"INPUT"], ["setPinMode", "digital", 4, "SERVO"],["grove_rgblcd_begin", 16, 2]');
 			}
 		}
+		*/
 		// -----
+
+
+		function setup() {
+			if (cpf) {
+				cpf.setPinMode('["resetPin"] ,["setPinMode", "analog", 1,"INPUT"], ["setPinMode", "digital", 4, "SERVO"]');
+			}
+		}
+		// --
 	</script>
 </body>
 
