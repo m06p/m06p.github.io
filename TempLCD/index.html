@@ -9,12 +9,12 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	 crossorigin="anonymous">
 
-	<title>20190109v6_sound</title>
+	<title>20190109v7_sound</title>
 
 </head>
 
 <body>
-	<h1>20190109_v6_sound</h1>
+	<h1>20190109_v7_sound</h1>
 
 	<div id="container">
 		<div class="col-xs-12">
@@ -61,7 +61,7 @@
 				// 如果溫度介於 -30 ~ 50 之間
 				
 				if (tempdata >= 700 ) {
-				cpf.request('["analogWrite", 4,' + 360 + ']');
+				cpf.request('["analogWrite", 4,' + Math.abs(90) + ']');
 				}
 /*
 				if (tempdata >= 700 ) {
