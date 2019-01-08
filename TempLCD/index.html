@@ -9,12 +9,12 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	 crossorigin="anonymous">
 
-	<title>20190109v4_sound</title>
+	<title>20190109v5_sound</title>
 
 </head>
 
 <body>
-	<h1>20190109_v4_sound</h1>
+	<h1>20190109_v5_sound</h1>
 
 	<div id="container">
 		<div class="col-xs-12">
@@ -55,9 +55,9 @@
 				// 取得感測器數值
 				tempdata = cpf.get("a1");
 				// 取得攝氏溫度
-				celsius = toCelsius(tempdata);
+				//celsius = toCelsius(tempdata);
 				// 顯示溫度數值
-				document.getElementById("temp").innerHTML = celsius;
+				document.getElementById("temp").innerHTML = tempdata;
 				// 如果溫度介於 -30 ~ 50 之間
 
 
