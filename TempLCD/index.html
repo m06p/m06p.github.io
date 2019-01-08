@@ -9,12 +9,12 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	 crossorigin="anonymous">
 
-	<title>20190108_V10_SOUND</title>
+	<title>20190108_V11_SOUND</title>
 
 </head>
 
 <body>
-	<h1>20190108_V10_SOUND</h1>
+	<h1>20190108_V11_SOUND</h1>
 
 	<div id="container">
 		<div class="col-xs-12">
@@ -62,7 +62,8 @@
 				// 顯示溫度數值
 				document.getElementById("sound").innerHTML = sound;
 
-
+				degree = Math.floor((180 / 80) * celsius + 67.5);
+				cpf.request('["analogWrite", 4,' + Math.abs(degree - 180) + ']');
 				// 如果溫度介於 -30 ~ 50 之間
 				/*if (celsius >= -30 && celsius <= 50) {
 					// 角度運算
