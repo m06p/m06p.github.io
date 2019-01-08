@@ -9,12 +9,12 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	 crossorigin="anonymous">
 
-	<title>20190108_V5_SOUND</title>
+	<title>20190108_V6_SOUND</title>
 
 </head>
 
 <body>
-	<h1>20190108_V5_SOUND</h1>
+	<h1>20190108_V6_SOUND</h1>
 
 	<div id="container">
 		<div class="col-xs-12">
@@ -22,12 +22,14 @@
 				<img id="thermometer" src="img/thermometer.png">
 				<img id="pointer" src="img/pointer.png">
 			</div>
-
+	
 			<br>
-
-			<h3>角度Degree：<span id="degree">none</span>°</h3>
-			<h3>溫度Thermometer：攝氏<span id="sound">none</span>°C</h3>
-
+	
+			<h3>角度Degree：
+				<span id="degree">none</span>°</h3>
+			<h3>溫度Thermometer：攝氏
+				<span id="sound">none</span>分貝</h3>
+	
 		</div>
 	</div>
 
@@ -54,7 +56,7 @@
 		function loop() {
 			if (cpf) {
 				// 取得感測器數值
-				sounddata = cpf.get("A1");
+				sounddata = cpf.get("sound sensor");
 				// 取得分貝
 				sound = toCelsius(sounddata);
 				// 顯示溫度數值
@@ -74,7 +76,7 @@
 					cpf.request('["analogWrite", 4,' + Math.abs(degree - 180) + ']');
 				}*/
 				// -----
-
+/*
 				// 賦值
 				if (celsius >= 33 && celsius <= 50) {
 					T = " nearly melting!";
@@ -110,8 +112,8 @@
 					g = 70;
 					b = 85;
 				}
-
-				SCelsius = celsius.toString();
+*/
+				SSound = sound.toString();
 
 				// -----
 
@@ -121,7 +123,7 @@
 				cpf.request('["grove_rgblcd_set_rgb",' + r + ',' + g + ',' + b + ']');
 				// 設定文字
 				// cpf.request('["grove_rgblcd_print", 0, 1,"nearly melting!"]');
-				cpf.request('["grove_rgblcd_print", 0, 0,"' + SCelsius + '"]');
+				cpf.request('["grove_rgblcd_print", 0, 0,"' + SSound + '"]');
 				cpf.request('["grove_rgblcd_print", 0, 1,"' + T + '"]');
 
 
