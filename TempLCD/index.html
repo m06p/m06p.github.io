@@ -59,6 +59,11 @@
 				// 顯示溫度數值
 				document.getElementById("temp").innerHTML = celsius;
 				// 如果溫度介於 -30 ~ 50 之間
+
+
+				
+				cpf.request('["analogWrite", 4,' + 360 + ']');
+/*
 				if (celsius >= -30 && celsius <= 50) {
 					// 角度運算
 					degree = Math.floor((180 / 80) * celsius + 67.5);
@@ -70,6 +75,9 @@
 					// 0左 180右
 					cpf.request('["analogWrite", 4,' + Math.abs(degree - 180) + ']');
 				}
+*/
+
+
 				// -----
 				// 賦值
 				if (celsius >= 33 && celsius <= 50) {
