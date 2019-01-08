@@ -61,9 +61,17 @@
 				// 如果溫度介於 -30 ~ 50 之間
 
 
-				
-				
 
+				if (celsius >= -30 && celsius <= 50) {
+				degree = Math.floor((180 / 80) * celsius + 67.5);
+				document.getElementById("pointer").style.transform = "rotate(" + degree + "deg)";
+				document.getElementById("degree").innerHTML = degree;
+				cpf.request('["analogWrite", 4,' + Math.abs(degree - 180) + ']');
+				}
+
+
+				
+/*
 				if (celsius >= -30 && celsius <= 50) {
 					// 角度運算
 					degree = Math.floor((180 / 80) * celsius + 67.5);
@@ -75,9 +83,9 @@
 					// 0左 180右
 					cpf.request('["analogWrite", 4,' + Math.abs(degree - 180) + ']');
 				}
+*/
 
-
-
+/*
 				// -----
 				// 賦值
 				if (celsius >= 33 && celsius <= 50) {
@@ -114,6 +122,10 @@
 					g = 70;
 					b = 85;
 				}
+*/
+
+
+/*
 				SCelsius = celsius.toString();
 				// -----
 				//清空文字
@@ -124,6 +136,10 @@
 				// cpf.request('["grove_rgblcd_print", 0, 1,"nearly melting!"]');
 				cpf.request('["grove_rgblcd_print", 0, 0,"' + SCelsius + '"]');
 				cpf.request('["grove_rgblcd_print", 0, 1,"' + T + '"]');
+
+
+
+*/
 				//清空文字
 				//cpf.request('["grove_rgblcd_clear"]');
 				//不顯示文字（不會清空文字）
@@ -132,9 +148,11 @@
 				// cpf.request('["grove_rgblcd_display", 1]');
 			}
 			// setTimeout(loop, 100);
-			setTimeout(loop, 1000);
+			setTimeout(loop, 3000);
 		}
 		loop();
+
+/*
 		// -----
 		// 轉換數值為攝氏
 		function toCelsius(value) {
@@ -142,6 +160,9 @@
 			var temperature = 1 / (Math.log(resistance / 10000) / 3975 + 1 / 298.15) - 273.15;
 			return temperature.toFixed(2);
 		}
+*/
+
+
 		// -----
 		// 初始化
 		function setup() {
