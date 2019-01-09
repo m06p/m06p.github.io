@@ -9,12 +9,12 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	 crossorigin="anonymous">
 
-	<title>20190109v12_sound</title>
+	<title>20190109v13_sound</title>
 
 </head>
 
 <body>
-	<h1>20190109_v12_sound</h1>
+	<h1>20190109_v13_sound</h1>
 
 	<div id="container">
 		<div class="col-xs-12">
@@ -63,6 +63,9 @@
 				//cpf.request('["servo_pos_speed", 8, 60, 30]');
 			
 				cpf.request('["analogWrite", 4,' + Math.abs(90) + ']');
+				cpf.request('["analogWrite", 4,' + Math.abs(180) + ']');
+				cpf.request('["analogWrite", 4,' + Math.abs(270) + ']');
+				cpf.request('["analogWrite", 4,' + Math.abs(360) + ']');
 		/*
 				if (tempdata >= 500 ) {
 				}
