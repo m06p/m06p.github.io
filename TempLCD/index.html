@@ -9,12 +9,12 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	 crossorigin="anonymous">
 
-	<title>20190109v14_sound</title>
+	<title>20190109v15_sound</title>
 
 </head>
 
 <body>
-	<h1>20190109_v14_sound</h1>
+	<h1>20190109_v15_sound</h1>
 
 	<div id="container">
 		<div class="col-xs-12">
@@ -62,10 +62,11 @@
 				
 				//cpf.request('["servo_pos_speed", 8, 60, 30]');
 			
-				cpf.request('["analogWrite", 4,' + Math.abs(90) + ']');
-				cpf.request('["analogWrite", 4,' + Math.abs(180) + ']');
-		/*
-				if (tempdata >= 500 ) {
+				cpf.request('["analogWrite", 4,' + Math.abs(135) + ']');
+				setTimeout(loop, 3000);
+				cpf.request('["analogWrite", 4,' + Math.abs(0) + ']');
+				//cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 4, "SERVO"]');
+				/*if (tempdata >= 500 ) {
 				}
 		*/
 /*
@@ -165,7 +166,7 @@
 				// cpf.request('["grove_rgblcd_display", 1]');
 			}
 			// setTimeout(loop, 100);
-			setTimeout(loop, 3000);
+			setTimeout(loop, 2000);
 		}
 		loop();
 
