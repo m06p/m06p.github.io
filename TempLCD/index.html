@@ -9,12 +9,12 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	 crossorigin="anonymous">
 
-	<title>20190109v18_sound</title>
+	<title>20190109v19_sound</title>
 
 </head>
 
 <body>
-	<h1>20190109_v18_sound</h1>
+	<h1>20190109_v19_sound</h1>
 
 	<div id="container">
 		<div class="col-xs-12">
@@ -67,8 +67,11 @@
 				if (tempdata >= 300 ) {
 				cpf.request('["analogWrite", 5,' + Math.abs(100) + ']');
 				
+				
 				// cpf.request('["analogWrite", 4,' + Math.abs(0) + ']');
 				}
+				cpf.request('["analogWrite", 5,' + Math.abs(0) + ']');
+				
 		
 /*
 				if (tempdata >= 700 ) {
